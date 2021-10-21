@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: Home.route,
-      routes: {Home.route: (BuildContext context) => Home(), DailyEmissionForm.route: (BuildContext context) => Home()},
+      routes: {
+        Home.route: (BuildContext context) => Home(),
+        DailyEmissionForm.route: (BuildContext context) => DailyEmissionForm(),
+      },
     );
   }
 }

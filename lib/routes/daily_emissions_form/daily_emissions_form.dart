@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class DailyEmissionForm extends StatefulWidget {
@@ -12,6 +13,10 @@ class DailyEmissionForm extends StatefulWidget {
 class _DailyEmissionFormState extends State<DailyEmissionForm> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+        body: ElevatedButton(
+      child: Text("FORM"),
+      onPressed: null,
+    ));
   }
 }
