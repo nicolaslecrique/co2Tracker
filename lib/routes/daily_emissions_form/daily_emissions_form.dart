@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'widgets/meal.dart';
+
 class DailyEmissionForm extends StatefulWidget {
   static const route = '/daily_emissions_form';
 
@@ -14,9 +16,16 @@ class _DailyEmissionFormState extends State<DailyEmissionForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ElevatedButton(
-      child: Text("FORM"),
-      onPressed: null,
+        body: Column(
+      children: [
+        Meal(mealTitle: 'Breakfast'),
+        Meal(mealTitle: 'Lunch'),
+        Meal(mealTitle: 'Dinner'),
+        ElevatedButton(
+          child: Text("FORM"),
+          onPressed: null,
+        ),
+      ],
     ));
   }
 }
