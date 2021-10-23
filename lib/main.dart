@@ -1,4 +1,4 @@
-import 'package:co2tracker/routes/daily_emissions_form/daily_emissions_form.dart';
+import 'package:co2tracker/routes/daily_form/daily_form.dart';
 import 'package:flutter/material.dart';
 
 import 'routes/home/home.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Home.route,
       routes: {
         Home.route: (BuildContext context) => Home(),
-        DailyEmissionForm.route: (BuildContext context) => DailyEmissionForm(),
+        DailyForm.route: (BuildContext context) => DailyForm(),
       },
     );
   }

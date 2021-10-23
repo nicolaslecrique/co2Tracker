@@ -3,16 +3,16 @@ import 'package:flutter/widgets.dart';
 
 import 'widgets/meal.dart';
 
-class DailyEmissionForm extends StatefulWidget {
-  static const route = '/daily_emissions_form';
+class DailyForm extends StatefulWidget {
+  static const route = '/daily_form';
 
-  const DailyEmissionForm({Key? key}) : super(key: key);
+  const DailyForm({Key? key}) : super(key: key);
 
   @override
-  _DailyEmissionFormState createState() => _DailyEmissionFormState();
+  _DailyFormState createState() => _DailyFormState();
 }
 
-class _DailyEmissionFormState extends State<DailyEmissionForm> {
+class _DailyFormState extends State<DailyForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

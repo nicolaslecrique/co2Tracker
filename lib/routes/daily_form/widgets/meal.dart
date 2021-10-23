@@ -1,5 +1,6 @@
-import 'package:co2tracker/routes/daily_emissions_form/widgets/meal_choice.dart';
 import 'package:flutter/material.dart';
+
+import 'meal_choice.dart';
 
 class Meal extends StatelessWidget {
   final String mealTitle;

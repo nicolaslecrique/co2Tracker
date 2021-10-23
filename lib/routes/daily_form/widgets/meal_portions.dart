@@ -1,5 +1,6 @@
-import 'package:co2tracker/routes/daily_emissions_form/widgets/meal_portion.dart';
 import 'package:flutter/material.dart';
+
+import 'meal_portion.dart';
 
 class MealPortions extends StatelessWidget {
   const MealPortions({Key? key}) : super(key: key);

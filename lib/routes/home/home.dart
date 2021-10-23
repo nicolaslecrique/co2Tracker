@@ -1,5 +1,5 @@
 import 'package:co2tracker/design/constants.dart';
-import 'package:co2tracker/routes/daily_emissions_form/daily_emissions_form.dart';
+import 'package:co2tracker/routes/daily_form/daily_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   child: Text("Today"),
-                  onPressed: () => Navigator.pushNamed(context, DailyEmissionForm.route),
+                  onPressed: () => Navigator.pushNamed(context, DailyForm.route),
                 ),
               )
             ],
