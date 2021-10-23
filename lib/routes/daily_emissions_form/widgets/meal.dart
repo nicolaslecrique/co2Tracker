@@ -13,12 +13,13 @@ class Meal extends StatelessWidget {
         children: [
           Text(mealTitle),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               MealChoice(foodList: ['Vegetarian']),
               MealChoice(foodList: ['Pig', 'Poultry', 'Fish']),
               MealChoice(foodList: ['Beef', 'Lamb', 'Mutton'])
             ],
-          )
+          ),
         ],
       ),
     );

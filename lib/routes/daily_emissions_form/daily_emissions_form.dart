@@ -16,16 +16,18 @@ class _DailyEmissionFormState extends State<DailyEmissionForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Meal(mealTitle: 'Breakfast'),
-        Meal(mealTitle: 'Lunch'),
-        Meal(mealTitle: 'Dinner'),
-        ElevatedButton(
-          child: Text("FORM"),
-          onPressed: null,
-        ),
-      ],
+        body: SafeArea(
+      child: Column(
+        children: [
+          Meal(mealTitle: 'Breakfast'),
+          Meal(mealTitle: 'Lunch'),
+          Meal(mealTitle: 'Dinner'),
+          ElevatedButton(
+            child: Text("Validate"),
+            onPressed: null,
+          ),
+        ],
+      ),
     ));
   }
 }

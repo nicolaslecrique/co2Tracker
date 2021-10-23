@@ -7,8 +7,11 @@ class MealChoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: List<Text>.unmodifiable(foodList.map((e) => Text(e))),
+    return ElevatedButton(
+      onPressed: () {},
+      child: Column(
+        children: List<Text>.unmodifiable(foodList.map((e) => Text(e))),
+      ),
     );
   }
 }
