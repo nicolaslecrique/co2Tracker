@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'meal_portion.dart';
+import 'meal_portion_button.dart';
 
 class MealPortions extends StatelessWidget {
   const MealPortions({Key? key}) : super(key: key);
@@ -9,7 +9,11 @@ class MealPortions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [MealPortion(sizeText: "Small"), MealPortion(sizeText: "Normal"), MealPortion(sizeText: "Big")],
+      children: [
+        MealPortionButton(sizeText: "Small"),
+        MealPortionButton(sizeText: "Normal"),
+        MealPortionButton(sizeText: "Big")
+      ],
     );
   }
 }

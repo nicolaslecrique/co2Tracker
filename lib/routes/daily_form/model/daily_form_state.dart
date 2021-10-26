@@ -9,23 +9,23 @@ enum FoodChoice {
 enum FoodPortion { small, normal, big }
 
 @immutable
-class Meal {
+class MealState {
   final FoodChoice foodChoice;
   final FoodPortion? foodPortionOrNull; // null if foodChoice is Vegetarian
 
-  Meal(this.foodChoice, this.foodPortionOrNull);
+  const MealState(this.foodChoice, this.foodPortionOrNull);
 }
 
 @immutable
 class DailyFormState {
-  final Meal breakfast;
-  final Meal lunch;
-  final Meal dinner;
+  final MealState breakfast;
+  final MealState lunch;
+  final MealState dinner;
 
   const DailyFormState(this.breakfast, this.lunch, this.dinner);
 
   factory DailyFormState.defaultDay() {
-    return DailyFormState(
-        Meal(FoodChoice.Vegetarian, null), Meal(FoodChoice.Vegetarian, null), Meal(FoodChoice.Vegetarian, null));
+    return DailyFormState(MealState(FoodChoice.Vegetarian, null), MealState(FoodChoice.Vegetarian, null),
+        MealState(FoodChoice.Vegetarian, null));
   }
 }

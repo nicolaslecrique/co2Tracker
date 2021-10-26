@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-import 'widgets/meal.dart';
+import 'widgets/meal_panel.dart';
 
 class DailyForm extends StatefulWidget {
   static const route = '/daily_form';
@@ -23,9 +23,9 @@ class _DailyFormState extends State<DailyForm> {
           body: SafeArea(
         child: Column(
           children: [
-            Meal(mealTitle: 'Breakfast'),
-            Meal(mealTitle: 'Lunch'),
-            Meal(mealTitle: 'Dinner'),
+            MealPanel(mealType: MealType.Breakfast),
+            MealPanel(mealType: MealType.Lunch),
+            MealPanel(mealType: MealType.Dinner),
             ElevatedButton(
               child: Text("Validate"),
               onPressed: null,
