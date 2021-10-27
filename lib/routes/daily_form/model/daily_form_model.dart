@@ -17,4 +17,12 @@ class DailyFormModel extends ChangeNotifier {
         return state.dinner;
     }
   }
+
+  void setFoodChoice(MealType mealType, FoodChoice foodChoice) {
+    state = new DailyFormState(
+        mealType == MealType.Breakfast ? new MealState(foodChoice, null) : state.breakfast,
+        mealType == MealType.Lunch ? new MealState(foodChoice, state.lunch.foodPortionOrNull) : state.breakfast,
+        mealType == MealType.Dinner ? new MealState(foodChoice, state.dinner.foodPortionOrNull) : state.breakfast);
+    notifyListeners();
+  }
 }

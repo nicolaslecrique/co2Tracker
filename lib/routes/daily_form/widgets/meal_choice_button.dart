@@ -1,25 +1,40 @@
+import 'package:co2tracker/routes/daily_form/model/daily_form_model.dart';
+import 'package:co2tracker/routes/daily_form/model/daily_form_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-/*
-TODO NICO: Bouger FoodChoice et faire le mapping type=>string ici
-comme ça ici on a footType et MealType, et on peut appeler le model.updateMealChoice(mealtype, foodtype)
-avec un consumer:
-=> pas de callback a passer au parent, la gui d'un boutton et dans le boutton
-=> on peut appliquer ça partout comme ça c'est clair et coherent
-*/
 class MealChoiceButton extends StatelessWidget {
-  final List<String> foodList;
-  final bool isSelected;
+  final MealType mealType;
+  final FoodChoice foodChoice;
 
-  const MealChoiceButton({Key? key, required this.foodList, required this.isSelected}) : super(key: key);
+  List<String> getFoodList(FoodChoice foodChoice) {
+    switch (foodChoice) {
+      case FoodChoice.Vegetarian:
+        return ['Vegetarian'];
+      case FoodChoice.PigPoultryFish:
+        return ['Pig', 'Poultry', 'Fish'];
+      case FoodChoice.BeefLambMutton:
+        return ['Beef', 'Lamb', 'Mutton'];
+    }
+  }
+
+  const MealChoiceButton({Key? key, required this.mealType, required this.foodChoice}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: Column(
-        children: List<Text>.unmodifiable(foodList.map((e) => Text(e))),
-      ),
+    Widget buttonChild = Column(
+      children: List<Text>.unmodifiable(getFoodList(foodChoice).map((e) => Text(e))),
     );
+
+    return Consumer<DailyFormModel>(builder: (BuildContext context, DailyFormModel model, Widget? child) {
+      bool isSelected = model.getMealState(mealType).foodChoice == foodChoice;
+      return ElevatedButton(
+        onPressed: () {
+          model.setFoodChoice(mealType, foodChoice);
+        },
+        child: buttonChild,
+        style: isSelected ? null : ElevatedButton.styleFrom(primary: Colors.green),
+      );
+    });
   }
 }

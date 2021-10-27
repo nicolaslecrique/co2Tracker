@@ -22,11 +22,9 @@ class MealPanel extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MealChoiceButton(foodList: ['Vegetarian'], isSelected: meal.foodChoice == FoodChoice.Vegetarian),
-                  MealChoiceButton(
-                      foodList: ['Pig', 'Poultry', 'Fish'], isSelected: meal.foodChoice == FoodChoice.PigPoultryFish),
-                  MealChoiceButton(
-                      foodList: ['Beef', 'Lamb', 'Mutton'], isSelected: meal.foodChoice == FoodChoice.BeefLambMutton)
+                  MealChoiceButton(mealType: mealType, foodChoice: FoodChoice.Vegetarian),
+                  MealChoiceButton(mealType: mealType, foodChoice: FoodChoice.PigPoultryFish),
+                  MealChoiceButton(mealType: mealType, foodChoice: FoodChoice.BeefLambMutton)
                 ],
               ),
             ],
