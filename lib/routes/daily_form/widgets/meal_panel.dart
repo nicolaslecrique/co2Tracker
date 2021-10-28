@@ -1,5 +1,6 @@
 import 'package:co2tracker/routes/daily_form/model/daily_form_model.dart';
 import 'package:co2tracker/routes/daily_form/model/daily_form_state.dart';
+import 'package:co2tracker/routes/daily_form/widgets/meal_portions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,9 +25,11 @@ class MealPanel extends StatelessWidget {
                 children: [
                   MealChoiceButton(mealType: mealType, foodChoice: FoodChoice.Vegetarian),
                   MealChoiceButton(mealType: mealType, foodChoice: FoodChoice.PigPoultryFish),
-                  MealChoiceButton(mealType: mealType, foodChoice: FoodChoice.BeefLambMutton)
+                  MealChoiceButton(mealType: mealType, foodChoice: FoodChoice.BeefLambMutton),
                 ],
               ),
+              if (meal.foodChoice != FoodChoice.Vegetarian)
+                MealPortions() // https://github.com/flutter/flutter/issues/3783#issuecomment-738476473
             ],
           ),
         );
