@@ -29,7 +29,8 @@ class MealPanel extends StatelessWidget {
                 ],
               ),
               if (meal.foodChoice != FoodChoice.Vegetarian)
-                MealPortions() // https://github.com/flutter/flutter/issues/3783#issuecomment-738476473
+                MealPortions(
+                    mealType: mealType) // https://github.com/flutter/flutter/issues/3783#issuecomment-738476473
             ],
           ),
         );
