@@ -1,4 +1,5 @@
 import 'package:co2tracker/routes/daily_form/daily_form.dart';
+import 'package:co2tracker/routes/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'routes/home/home.dart';
@@ -16,8 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: Home.route,
+      initialRoute: SplashScreen.route,
       routes: {
+        SplashScreen.route: (BuildContext context) => SplashScreen(),
         Home.route: (BuildContext context) => Home(),
         DailyForm.route: (BuildContext context) => DailyForm(),
       },

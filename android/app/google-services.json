@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "472507297565",
+    "project_id": "co2tracker-globers",
+    "storage_bucket": "co2tracker-globers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472507297565:android:5568d38cd23e5f944b3bf4",
+        "android_client_info": {
+          "package_name": "co.globers.co2tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472507297565-5i0b5q0fsbti3p7d6hi9jvabucmbej6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFDTnK94ZEkZbIjAkxJ7mJ8tHEt7vlhc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472507297565-5i0b5q0fsbti3p7d6hi9jvabucmbej6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
