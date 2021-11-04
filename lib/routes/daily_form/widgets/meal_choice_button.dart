@@ -1,5 +1,5 @@
+import 'package:co2tracker/model/daily_activities.dart';
 import 'package:co2tracker/routes/daily_form/model/daily_form_model.dart';
-import 'package:co2tracker/routes/daily_form/model/daily_form_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

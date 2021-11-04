@@ -1,5 +1,5 @@
+import 'package:co2tracker/model/daily_activities.dart';
 import 'package:co2tracker/routes/daily_form/model/daily_form_model.dart';
-import 'package:co2tracker/routes/daily_form/model/daily_form_state.dart';
 import 'package:co2tracker/routes/daily_form/widgets/meal_portions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +15,7 @@ class MealPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<DailyFormModel>(
       builder: (BuildContext context, DailyFormModel lessonModel, Widget? child) {
-        MealState meal = lessonModel.getMealState(mealType);
+        Meal meal = lessonModel.getMealState(mealType);
         return Card(
           child: Column(
             children: [
@@ -29,7 +29,7 @@ class MealPanel extends StatelessWidget {
                 ],
               ),
               if (meal.foodChoice != FoodChoice.Vegetarian)
-                MealPortions(
+                MeatPortions(
                     mealType: mealType) // https://github.com/flutter/flutter/issues/3783#issuecomment-738476473
             ],
           ),

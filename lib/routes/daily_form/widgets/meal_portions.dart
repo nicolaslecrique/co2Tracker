@@ -1,21 +1,21 @@
+import 'package:co2tracker/model/daily_activities.dart';
 import 'package:co2tracker/routes/daily_form/model/daily_form_model.dart';
-import 'package:co2tracker/routes/daily_form/model/daily_form_state.dart';
 import 'package:flutter/material.dart';
 
-import 'meal_portion_button.dart';
+import 'meat_portion_button.dart';
 
-class MealPortions extends StatelessWidget {
+class MeatPortions extends StatelessWidget {
   final MealType mealType;
-  const MealPortions({Key? key, required this.mealType}) : super(key: key);
+  const MeatPortions({Key? key, required this.mealType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        MealPortionButton(mealType: mealType, foodPortion: FoodPortion.small),
-        MealPortionButton(mealType: mealType, foodPortion: FoodPortion.normal),
-        MealPortionButton(mealType: mealType, foodPortion: FoodPortion.big)
+        MeatPortionButton(mealType: mealType, meatPortion: MeatPortion.small),
+        MeatPortionButton(mealType: mealType, meatPortion: MeatPortion.normal),
+        MeatPortionButton(mealType: mealType, meatPortion: MeatPortion.big)
       ],
     );
   }

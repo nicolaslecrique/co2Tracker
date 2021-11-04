@@ -1,13 +1,13 @@
+import 'package:co2tracker/model/daily_activities.dart';
 import 'package:flutter/foundation.dart';
-
-import 'daily_form_state.dart';
 
 enum MealType { Breakfast, Lunch, Dinner }
 
 class DailyFormModel extends ChangeNotifier {
-  DailyFormState state = DailyFormState.defaultDay();
+  DailyActivities state = DailyActivities(Meal(FoodChoice.Vegetarian, MeatPortion.empty),
+      Meal(FoodChoice.Vegetarian, MeatPortion.empty), Meal(FoodChoice.Vegetarian, MeatPortion.empty));
 
-  MealState getMealState(MealType mealType) {
+  Meal getMealState(MealType mealType) {
     switch (mealType) {
       case MealType.Breakfast:
         return state.breakfast;
@@ -19,19 +19,19 @@ class DailyFormModel extends ChangeNotifier {
   }
 
   void setFoodChoice(MealType mealType, FoodChoice foodChoice) {
-    FoodPortion? defaultPortion = foodChoice == FoodChoice.Vegetarian ? null : FoodPortion.normal;
-    state = new DailyFormState(
-        mealType == MealType.Breakfast ? new MealState(foodChoice, defaultPortion) : state.breakfast,
-        mealType == MealType.Lunch ? new MealState(foodChoice, defaultPortion) : state.lunch,
-        mealType == MealType.Dinner ? new MealState(foodChoice, defaultPortion) : state.dinner);
+    MeatPortion defaultPortion = foodChoice == FoodChoice.Vegetarian ? MeatPortion.empty : MeatPortion.normal;
+    state = new DailyActivities(
+        mealType == MealType.Breakfast ? new Meal(foodChoice, defaultPortion) : state.breakfast,
+        mealType == MealType.Lunch ? new Meal(foodChoice, defaultPortion) : state.lunch,
+        mealType == MealType.Dinner ? new Meal(foodChoice, defaultPortion) : state.dinner);
     notifyListeners();
   }
 
-  void setPortion(MealType mealType, FoodPortion foodPortion) {
-    state = new DailyFormState(
-        mealType == MealType.Breakfast ? new MealState(state.lunch.foodChoice, foodPortion) : state.lunch,
-        mealType == MealType.Lunch ? new MealState(state.lunch.foodChoice, foodPortion) : state.lunch,
-        mealType == MealType.Dinner ? new MealState(state.dinner.foodChoice, foodPortion) : state.dinner);
+  void setPortion(MealType mealType, MeatPortion meatPortion) {
+    state = new DailyActivities(
+        mealType == MealType.Breakfast ? new Meal(state.lunch.foodChoice, meatPortion) : state.lunch,
+        mealType == MealType.Lunch ? new Meal(state.lunch.foodChoice, meatPortion) : state.lunch,
+        mealType == MealType.Dinner ? new Meal(state.dinner.foodChoice, meatPortion) : state.dinner);
     notifyListeners();
   }
 }
