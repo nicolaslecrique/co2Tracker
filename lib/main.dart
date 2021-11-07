@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.route: (BuildContext context) => SplashScreen(),
         Home.route: (BuildContext context) => Home(),
-        DailyForm.route: (BuildContext context) => DailyForm(),
+        DailyForm.route: (BuildContext context) =>
+            DailyForm(ModalRoute.of(context)!.settings.arguments as DailyFormArgs),
       },
     );
   }

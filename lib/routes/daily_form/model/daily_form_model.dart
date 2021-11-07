@@ -4,8 +4,11 @@ import 'package:flutter/foundation.dart';
 enum MealType { Breakfast, Lunch, Dinner }
 
 class DailyFormModel extends ChangeNotifier {
-  DailyActivities state = DailyActivities(Meal(FoodChoice.Vegetarian, MeatPortion.empty),
-      Meal(FoodChoice.Vegetarian, MeatPortion.empty), Meal(FoodChoice.Vegetarian, MeatPortion.empty));
+  final Day day;
+
+  DailyActivities state;
+
+  DailyFormModel(this.day, DailyActivities initialState) : state = initialState;
 
   Meal getMealState(MealType mealType) {
     switch (mealType) {
@@ -29,9 +32,11 @@ class DailyFormModel extends ChangeNotifier {
 
   void setPortion(MealType mealType, MeatPortion meatPortion) {
     state = new DailyActivities(
-        mealType == MealType.Breakfast ? new Meal(state.lunch.foodChoice, meatPortion) : state.lunch,
+        mealType == MealType.Breakfast ? new Meal(state.breakfast.foodChoice, meatPortion) : state.breakfast,
         mealType == MealType.Lunch ? new Meal(state.lunch.foodChoice, meatPortion) : state.lunch,
         mealType == MealType.Dinner ? new Meal(state.dinner.foodChoice, meatPortion) : state.dinner);
     notifyListeners();
   }
+
+  void confirmDailyForm() {}
 }

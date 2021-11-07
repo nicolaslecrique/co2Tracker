@@ -1,4 +1,5 @@
 import 'package:co2tracker/design/constants.dart';
+import 'package:co2tracker/model/daily_activities.dart';
 import 'package:co2tracker/routes/daily_form/daily_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,7 +22,8 @@ class Home extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   child: Text("Today"),
-                  onPressed: () => Navigator.pushNamed(context, DailyForm.route),
+                  onPressed: () => Navigator.pushNamed(context, DailyForm.route,
+                      arguments: DailyFormArgs(Day.current(), DailyActivities.defaultDay)),
                 ),
               )
             ],
