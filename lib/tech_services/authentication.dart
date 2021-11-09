@@ -1,3 +1,4 @@
+import 'package:co2tracker/tech_services/db.dart';
 import 'package:co2tracker/tech_services/uxcam.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class Authentication {
-  static Future<void> authenticate(BuildContext context) async {
+  static Future<DbUser> authenticate(BuildContext context) async {
     // 1) init firebase
     await Firebase.initializeApp();
 
@@ -18,13 +19,14 @@ class Authentication {
     // 3) authenticate user
     FirebaseAuth auth = FirebaseAuth.instance;
     final UserCredential cred = await auth.signInAnonymously();
-    String userId = cred.user!.uid;
+    String userUid = cred.user!.uid;
 
     if (!kDebugMode) {
       // 4) init tracking
-      initUxCam(userId);
+      initUxCam(userUid);
     } else {
       await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
     }
+    return await Db.getOrCreateUser(userUid);
   }
 }
