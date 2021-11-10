@@ -1,6 +1,7 @@
+import 'package:co2tracker/model/user_model.dart';
 import 'package:co2tracker/routes/home/home.dart';
-import 'package:co2tracker/tech_services/authentication.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 @immutable
 class SplashScreen extends StatefulWidget {
@@ -20,7 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> initUser() async {
-    await Authentication.authenticate(context);
+    var model = Provider.of<UserModel>(context, listen: false);
+    await model.init();
     await Navigator.pushNamedAndRemoveUntil(context, Home.route, (r) => false);
   }
 

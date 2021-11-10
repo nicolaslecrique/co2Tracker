@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:co2tracker/model/app_user.dart';
 import 'package:co2tracker/model/daily_activities.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -95,16 +96,16 @@ class DbDailyActivities {
 }
 
 class Db {
-  static Future<DbUser> getOrCreateUser(String userUid) async {
+  static Future<AppUser> getOrCreateUser(String userUid) async {
     DocumentReference<DbUser> docRef = DbUser.docRef(FirebaseFirestore.instance, userUid);
 
     DocumentSnapshot<DbUser> userDs = await docRef.get();
     if (userDs.exists) {
-      return userDs.data()!;
+      return AppUser(userDs.data()!.userUid);
     } else {
-      var user = DbUser(userUid);
-      await docRef.set(user);
-      return user;
+      var dbUser = DbUser(userUid);
+      await docRef.set(dbUser);
+      return AppUser(dbUser.userUid);
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:co2tracker/model/app_user.dart';
 import 'package:co2tracker/tech_services/db.dart';
 import 'package:co2tracker/tech_services/uxcam.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class Authentication {
-  static Future<DbUser> authenticate(BuildContext context) async {
+  static Future<AppUser> authenticate() async {
     // 1) init firebase
     await Firebase.initializeApp();
 
