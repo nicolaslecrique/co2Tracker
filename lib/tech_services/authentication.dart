@@ -1,5 +1,4 @@
 import 'package:co2tracker/model/app_user.dart';
-import 'package:co2tracker/tech_services/db.dart';
 import 'package:co2tracker/tech_services/uxcam.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,6 +27,8 @@ class Authentication {
     } else {
       await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
     }
-    return await Db.getOrCreateUser(userUid);
+
+    return AppUser("TODO NICO");
+    //return await Db.getOrCreateUser(userUid);
   }
 }

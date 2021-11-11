@@ -1,8 +1,10 @@
 import 'package:co2tracker/design/constants.dart';
 import 'package:co2tracker/model/daily_activities.dart';
+import 'package:co2tracker/model/user_model.dart';
 import 'package:co2tracker/routes/daily_form/daily_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   static const route = '/home';
@@ -11,6 +13,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var model = Provider.of<UserModel>(context, listen: false);
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.all(StandardSizes.medium),
@@ -23,7 +26,7 @@ class Home extends StatelessWidget {
                 child: ElevatedButton(
                   child: Text("Today"),
                   onPressed: () => Navigator.pushNamed(context, DailyForm.route,
-                      arguments: DailyFormArgs(Day.current(), DailyActivities.defaultDay)),
+                      arguments: DailyFormArgs(model.user, Day.current(), DailyActivities.defaultDay)),
                 ),
               )
             ],

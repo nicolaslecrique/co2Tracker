@@ -1,14 +1,17 @@
+import 'package:co2tracker/model/app_user.dart';
 import 'package:co2tracker/model/daily_activities.dart';
+import 'package:co2tracker/tech_services/db.dart';
 import 'package:flutter/foundation.dart';
 
 enum MealType { Breakfast, Lunch, Dinner }
 
 class DailyFormModel extends ChangeNotifier {
   final Day day;
+  final AppUser user;
 
   DailyActivities state;
 
-  DailyFormModel(this.day, DailyActivities initialState) : state = initialState;
+  DailyFormModel(this.user, this.day, DailyActivities initialState) : state = initialState;
 
   Meal getMealState(MealType mealType) {
     switch (mealType) {
@@ -38,5 +41,7 @@ class DailyFormModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void confirmDailyForm() {}
+  void confirmDailyForm() {
+    Db.setDailyActivities(user, day, state);
+  }
 }
