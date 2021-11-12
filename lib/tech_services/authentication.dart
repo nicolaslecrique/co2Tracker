@@ -6,6 +6,8 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
+import 'db.dart';
+
 class Authentication {
   static Future<AppUser> authenticate() async {
     // 1) init firebase
@@ -28,7 +30,6 @@ class Authentication {
       await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
     }
 
-    return AppUser("TODO NICO");
-    //return await Db.getOrCreateUser(userUid);
+    return await Db.getOrCreateUser(userUid);
   }
 }
