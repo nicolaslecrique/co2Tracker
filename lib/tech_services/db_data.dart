@@ -74,9 +74,13 @@ class DbMeal {
   }
 
   static DbMeal fromJson(Map<String, dynamic> json) => _$DbMealFromJson(json);
+
+  toJson() {
+    return _$DbMealToJson(this);
+  }
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 @immutable
 class DbDailyActivities {
   static const String COLLECTION_NAME = "days";

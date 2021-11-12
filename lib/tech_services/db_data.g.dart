@@ -46,7 +46,7 @@ DbDailyActivities _$DbDailyActivitiesFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$DbDailyActivitiesToJson(DbDailyActivities instance) =>
     <String, dynamic>{
-      'breakfast': instance.breakfast,
-      'lunch': instance.lunch,
-      'dinner': instance.dinner,
+      'breakfast': instance.breakfast.toJson(),
+      'lunch': instance.lunch.toJson(),
+      'dinner': instance.dinner.toJson(),
     };
