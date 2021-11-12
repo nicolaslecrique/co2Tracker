@@ -1,6 +1,7 @@
 import 'package:co2tracker/model/app_user.dart';
 import 'package:co2tracker/model/daily_activities.dart';
 import 'package:co2tracker/routes/daily_form/model/daily_form_model.dart';
+import 'package:co2tracker/routes/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -57,9 +58,11 @@ class DailyFormWithModel extends StatelessWidget {
           MealPanel(mealType: MealType.Lunch),
           MealPanel(mealType: MealType.Dinner),
           ElevatedButton(
-            child: Text("Validate"),
-            onPressed: () => Provider.of<DailyFormModel>(context, listen: false).confirmDailyForm(),
-          ),
+              child: Text("Validate"),
+              onPressed: () {
+                Provider.of<DailyFormModel>(context, listen: false).confirmDailyForm();
+                Navigator.pushNamedAndRemoveUntil(context, Home.route, (route) => false);
+              }),
         ],
       ),
     ));
