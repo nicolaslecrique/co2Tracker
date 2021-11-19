@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 enum FoodChoice {
   Vegetarian,
@@ -33,8 +34,14 @@ class Day {
   final int year;
   final int month;
   final int day;
+  static final DateFormat keyFormatter = DateFormat('yyyy-MM-dd');
 
   const Day(this.year, this.month, this.day);
+
+  static Day fromKey(String key) {
+    var dateTime = keyFormatter.parse(key);
+    return Day(dateTime.year, dateTime.month, dateTime.day);
+  }
 
   static current() {
     // up to 4a.m, the day we input is the previous day
@@ -43,6 +50,14 @@ class Day {
   }
 
   String toKeyString() {
-    return "$year-$month-$day";
+    return keyFormatter.format(DateTime(year, month, day));
   }
+}
+
+@immutable
+class ActivitiesWithDate {
+  final Day day;
+  final DailyActivities activities;
+
+  const ActivitiesWithDate(this.day, this.activities);
 }

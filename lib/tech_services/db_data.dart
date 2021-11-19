@@ -56,6 +56,17 @@ class DbMeal {
     }
   }
 
+  FoodChoice _foodChoiceToModel() {
+    switch (foodChoice) {
+      case DbFoodChoice.Vegetarian:
+        return FoodChoice.Vegetarian;
+      case DbFoodChoice.PigPoultryFish:
+        return FoodChoice.PigPoultryFish;
+      case DbFoodChoice.BeefLambMutton:
+        return FoodChoice.BeefLambMutton;
+    }
+  }
+
   static DbMeatPortion _meatPortionFromModel(MeatPortion meatPortion) {
     switch (meatPortion) {
       case MeatPortion.empty:
@@ -69,8 +80,25 @@ class DbMeal {
     }
   }
 
+  MeatPortion _meatPortionToModel() {
+    switch (meatPortion) {
+      case DbMeatPortion.empty:
+        return MeatPortion.empty;
+      case DbMeatPortion.small:
+        return MeatPortion.small;
+      case DbMeatPortion.normal:
+        return MeatPortion.normal;
+      case DbMeatPortion.big:
+        return MeatPortion.big;
+    }
+  }
+
   static DbMeal fromModel(Meal meal) {
     return DbMeal(_foodChoiceFromModel(meal.foodChoice), _meatPortionFromModel(meal.meatPortion));
+  }
+
+  Meal toModel() {
+    return Meal(_foodChoiceToModel(), _meatPortionToModel());
   }
 
   static DbMeal fromJson(Map<String, dynamic> json) => _$DbMealFromJson(json);
@@ -96,13 +124,18 @@ class DbDailyActivities {
         DbMeal.fromModel(dailyActivities.dinner));
   }
 
+  DailyActivities toModel() {
+    return DailyActivities(breakfast.toModel(), lunch.toModel(), dinner.toModel());
+  }
+
+  static CollectionReference<DbDailyActivities> colRef(FirebaseFirestore fs, String userUid) {
+    return DbUser.docRef(fs, userUid).collection(COLLECTION_NAME).withConverter(
+        fromFirestore: (DocumentSnapshot<Map<String, dynamic>> snapshot, SnapshotOptions? options) =>
+            _$DbDailyActivitiesFromJson(snapshot.data()!),
+        toFirestore: (DbDailyActivities value, SetOptions? options) => _$DbDailyActivitiesToJson(value));
+  }
+
   static DocumentReference<DbDailyActivities> docRef(FirebaseFirestore fs, String userUid, Day day) {
-    return DbUser.docRef(fs, userUid)
-        .collection(COLLECTION_NAME)
-        .withConverter(
-            fromFirestore: (DocumentSnapshot<Map<String, dynamic>> snapshot, SnapshotOptions? options) =>
-                _$DbDailyActivitiesFromJson(snapshot.data()!),
-            toFirestore: (DbDailyActivities value, SetOptions? options) => _$DbDailyActivitiesToJson(value))
-        .doc(day.toKeyString());
+    return colRef(fs, userUid).doc(day.toKeyString());
   }
 }

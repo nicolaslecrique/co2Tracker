@@ -24,4 +24,10 @@ class Db {
     var docRef = DbDailyActivities.docRef(FirebaseFirestore.instance, user.userUid, day);
     await docRef.set(dbDailyActivities);
   }
+
+  static Future<List<ActivitiesWithDate>> getActivities(AppUser user) async {
+    final c = await DbDailyActivities.colRef(FirebaseFirestore.instance, user.userUid).get();
+    return List<ActivitiesWithDate>.unmodifiable(
+        c.docs.map((e) => ActivitiesWithDate(Day.fromKey(e.id), e.data().toModel())));
+  }
 }

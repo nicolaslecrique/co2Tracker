@@ -2,6 +2,7 @@ import 'package:co2tracker/design/constants.dart';
 import 'package:co2tracker/model/daily_activities.dart';
 import 'package:co2tracker/model/user_model.dart';
 import 'package:co2tracker/routes/daily_form/daily_form.dart';
+import 'package:co2tracker/routes/home/widgets/co2_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +20,8 @@ class Home extends StatelessWidget {
           padding: const EdgeInsets.all(StandardSizes.medium),
           child: Column(
             children: <Widget>[
-              Spacer(),
+              SizedBox(height: StandardSizes.medium),
+              Co2Chart(),
               SizedBox(height: StandardSizes.medium),
               SizedBox(
                 width: double.infinity,
