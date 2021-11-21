@@ -26,7 +26,8 @@ class Db {
   }
 
   static Future<List<ActivitiesWithDate>> getActivities(AppUser user) async {
-    final c = await DbDailyActivities.colRef(FirebaseFirestore.instance, user.userUid).get();
+    final c =
+        await DbDailyActivities.colRef(FirebaseFirestore.instance, user.userUid).orderBy(FieldPath.documentId).get();
     return List<ActivitiesWithDate>.unmodifiable(
         c.docs.map((e) => ActivitiesWithDate(Day.fromKey(e.id), e.data().toModel())));
   }

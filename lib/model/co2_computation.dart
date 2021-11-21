@@ -2,21 +2,31 @@ import 'daily_activities.dart';
 
 // https://ourworldindata.org/food-choice-vs-eating-local
 
-class Co2Computation {
-  void computeEmissions(List<ActivitiesWithDate> activities) {}
+class Co2EmissionByDay {
+  final Day day;
+  final double kgCo2;
 
-  double computeFoodEmission(DailyActivities dailyActivities) {
+  Co2EmissionByDay(this.day, this.kgCo2);
+}
+
+class Co2Computation {
+  static List<Co2EmissionByDay> computeEmissionsByDay(List<ActivitiesWithDate> activities) {
+    return List<Co2EmissionByDay>.unmodifiable(
+        activities.map((e) => Co2EmissionByDay(e.day, computeFoodEmission(e.activities))));
+  }
+
+  static double computeFoodEmission(DailyActivities dailyActivities) {
     return computeMealEmissions(dailyActivities.breakfast) +
         computeMealEmissions(dailyActivities.lunch) +
         computeMealEmissions(dailyActivities.dinner);
   }
 
-  double computeMealEmissions(Meal meal) {
+  static double computeMealEmissions(Meal meal) {
     return getEmissionsByKg(meal.foodChoice) * getWeightInKg(meal.meatPortion) +
         getNonMeatWeight(meal.meatPortion) * getEmissionsByKg(FoodChoice.Vegetarian);
   }
 
-  double getEmissionsByKg(FoodChoice foodChoice) {
+  static double getEmissionsByKg(FoodChoice foodChoice) {
     switch (foodChoice) {
       case FoodChoice.Vegetarian:
         return 2; // average estimation
@@ -27,11 +37,11 @@ class Co2Computation {
     }
   }
 
-  double getNonMeatWeight(MeatPortion meatPortion) {
+  static double getNonMeatWeight(MeatPortion meatPortion) {
     return 0.200; // should probably depends on meat portion
   }
 
-  double getWeightInKg(MeatPortion meatPortion) {
+  static double getWeightInKg(MeatPortion meatPortion) {
     switch (meatPortion) {
       case MeatPortion.empty:
         return 0;

@@ -30,7 +30,7 @@ class DailyActivities {
 }
 
 @immutable
-class Day {
+class Day implements Comparable {
   final int year;
   final int month;
   final int day;
@@ -51,6 +51,20 @@ class Day {
 
   String toKeyString() {
     return keyFormatter.format(DateTime(year, month, day));
+  }
+
+  @override
+  int compareTo(other) {
+    Day otherDay = other as Day;
+    int yearCompare = this.year.compareTo(otherDay.year);
+    if (yearCompare != 0) {
+      return yearCompare;
+    }
+    int monthCompare = this.month.compareTo(otherDay.month);
+    if (monthCompare != 0) {
+      return monthCompare;
+    }
+    return this.day.compareTo(otherDay.day);
   }
 }
 
